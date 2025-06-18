@@ -60,7 +60,6 @@ class Network :
                 s+=1
         return s
     
-    #backprop alg is next chapter so i will just copy the function from the book for now and just get an overview by reading it
     def backprop(self, x, y):
         """Return a tuple ``(nabla_b, nabla_w)`` representing the
         gradient for the cost function C_x.  ``nabla_b`` and
@@ -90,12 +89,12 @@ class Network :
             nabla_w[-l] = np.dot(delta, activations[-l - 1].transpose())
         return (nabla_b, nabla_w)
     
-    #this cost_derivative function is also from the book its related to the back prop alg 
+    
     def cost_derivative(self, output_activations, y):
         """Return the vector of partial derivatives \partial C_x /
         \partial a for the output activations."""
         return (output_activations - y)
-    #these two methods to save the trained network param is from chat (will come back to code it myself later)
+    
     def save(self, filename):
         data = {"sizes": self.sizes,
                 "weights": self.weights,
