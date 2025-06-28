@@ -19,11 +19,11 @@ If you're reading the paper and want to see the math brought to life in code —
 
 ## Project Structure
 
-- `train.py` trains the neural network on the MNIST dataset.
-- `test_mnist.py` evaluates the trained model on the test set.
-- `models/` stores trained network weights.
-- `mnist_loader.py` loads and preprocesses MNIST data.
-- `network.py` core neural network and backpropagation implementation.
+- `train.py` — trains the neural network on the MNIST dataset.
+- `test_mnist.py` — evaluates the trained model on the test set.
+- `models/` — stores trained network weights.
+- `mnist_loader.py` — loads and preprocesses MNIST data.
+- `network.py` — core neural network and backpropagation implementation.
 
 ## Setup and Usage
 
@@ -34,6 +34,6 @@ python test_mnist.py    # Test the model
 Notes
 While this started as a learning project, the code has matured alongside my deeper mathematical study of backpropagation.
 
-You can find the full paper, which builds backpropagation from scratch using math and connects directly to this code
-
-I welcome others who are curious about the math behind learning  feel free to explore and build upon it!
+📄 **[Read the full paper (PDF)](backpropagation.pdf)**  
+*A visual, step-by-step derivation of the backpropagation algorithm, from first principles to code.*
+I welcome others who are curious about the math behind learning — feel free to explore and build upon it!
