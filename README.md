@@ -8,9 +8,10 @@ This repository is part of my ongoing deep research in machine learning and math
 
 The code here directly reflects the formulas derived in my paper, including:
 
-- \( \delta^L = (a^L - y) \odot \sigma'(z^L) \)
-- \( \delta^l = ((W^{l+1})^\top \cdot \delta^{l+1}) \odot \sigma'(z^l) \)
-- \( \frac{\partial C}{\partial w^l} = \delta^l (a^{l-1})^\top \)
+- δᴸ = (aᴸ − y) ⊙ σ′(zᴸ)
+- δˡ = (Wˡ⁺¹)ᵗ · δˡ⁺¹ ⊙ σ′(zˡ)
+- ∂C/∂wˡ = δˡ · (aˡ⁻¹)ᵗ
+
 
 These are implemented clearly and directly using NumPy.
 
