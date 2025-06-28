@@ -34,6 +34,6 @@ python test_mnist.py    # Test the model
 Notes
 While this started as a learning project, the code has matured alongside my deeper mathematical study of backpropagation.
 
-📄 **[Read the full paper (PDF)](backpropagation.pdf)**  
+📄 **[Read the full paper (PDF)](https://github.com/Ka3baAnanas/mnist-digit-recognizer/raw/main/backpropagation.pdf)**
 *A visual, step-by-step derivation of the backpropagation algorithm, from first principles to code.*
 I welcome others who are curious about the math behind learning — feel free to explore and build upon it!
