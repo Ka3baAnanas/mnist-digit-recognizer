@@ -18,12 +18,9 @@ class Network :
                 mini_batch.append(training_data[i])
                 if len(mini_batch)==mini_batch_size:
                     mini_batches.append(mini_batch)
-                    #print(mini_batch)
                     mini_batch=[]
-            #print(mini_batch)
             for mini_batch in mini_batches :
                 self.update_mini_batch(mini_batch,eta)
-
             
             if test_data :
                 print(f"epoch{j}:{self.evaluate(test_data)}/{len(test_data)}")
@@ -46,12 +43,43 @@ class Network :
         for i in range (len(self.weights)):self.weights[i]-=(eta/len(mini_batch))*gr_w[i] #Wi ← bi - 1/m(η * Σ∇CWxi)=bi -η * [(Σ∇CWxi)/m];Wi is the weights matrix
     
     def feedforward(self,a):
-        for i in range (self.num_layers - 1):
-            a=sigmoid(np.dot(self.weights[i],a)+self.biases[i])
+        for w,b in zip(self.weights,self.biases):
+            z=np.dot(w,a)+b
+            a=sigmoid(z)
         
         return a
 
+    def backprop(self,x,y):
+        nabla_b=[np.zeros(b.shape) for b in self.biases]
+        nabla_w=[np.zeros(w.shape) for w in self.weights]
+        a=x
+        activations=[x]
+        zs=[]
+        for w,b in zip(self.weights,self.biases):
+            z=np.dot(w,a)+b
+            zs.append(z)
+            a=sigmoid(z)
+            activations.append(a)
+        
+        delta=self.costderivative(activations[-1],y) * sigmoid_prime(zs[-1])
+        nabla_b[-1]=delta 
+        nabla_w[-1]=np.dot(delta,activations[-2].transpose())
+        
+        for l in range (2,self.num_layers):
+            z=zs[-l]
+            delta=(np.dot(np.transpose(self.weights[-l+1]),delta)) * sigmoid_prime(z)
+            nabla_b[-l]=delta
+            nabla_w[-l]=np.dot(delta,activations[-l-1].transpose())
+        return (nabla_b,nabla_w)
+
+            
     
+
+
+    def costderivative(self,a,y):
+        return (a-y)
+        
+
     def evaluate(self,test_data):
         s=0
         for (x,y) in test_data :
@@ -60,6 +88,7 @@ class Network :
                 s+=1
         return s
     
+    #backprop alg is next chapter so i will just copy the function from the book for now and just get an overview by reading it
     def backprop(self, x, y):
         """Return a tuple ``(nabla_b, nabla_w)`` representing the
         gradient for the cost function C_x.  ``nabla_b`` and
@@ -89,12 +118,12 @@ class Network :
             nabla_w[-l] = np.dot(delta, activations[-l - 1].transpose())
         return (nabla_b, nabla_w)
     
-    
+    #this cost_derivative function is also from the book its related to the back prop alg 
     def cost_derivative(self, output_activations, y):
         """Return the vector of partial derivatives \partial C_x /
         \partial a for the output activations."""
         return (output_activations - y)
-    
+    #these two methods to save the trained network param is from chat (will come back to code it myself later)
     def save(self, filename):
         data = {"sizes": self.sizes,
                 "weights": self.weights,
