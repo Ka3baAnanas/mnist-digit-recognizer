@@ -1,35 +1,38 @@
 # MNIST Digit Recognizer
 
-This project is my personal implementation of a neural network for handwritten digit recognition, based on the book *Neural Networks and Deep Learning* by Michael Nielsen.
+This project is a from-scratch implementation of a neural network trained on the MNIST dataset, based on the principles presented in Michael Nielsen's book *Neural Networks and Deep Learning*. It also complements the mathematical paper I've written on the backpropagation algorithm.
 
 ## About
 
-I am currently learning deep learning by working through this book and implementing its concepts from scratch. This project is part of my deep research and hands-on practice with neural networks, aiming to better understand how they work and learn.
+This repository is part of my ongoing deep research in machine learning and mathematical AI. As a student with a solid background in mathematics and a strong passion for understanding how learning systems work, I’ve been exploring backpropagation not just through implementation, but by reconstructing it mathematically and visually — step by step.
+
+The code here directly reflects the formulas derived in my paper, including:
+
+- \( \delta^L = (a^L - y) \odot \sigma'(z^L) \)
+- \( \delta^l = ((W^{l+1})^\top \cdot \delta^{l+1}) \odot \sigma'(z^l) \)
+- \( \frac{\partial C}{\partial w^l} = \delta^l (a^{l-1})^\top \)
+
+These are implemented clearly and directly using NumPy.
+
+If you're reading the paper and want to see the math brought to life in code — this repo is for you.
 
 ## Project Structure
 
-- `train.py`: Script to train the neural network on the MNIST dataset.
-- `test_mnist.py`: Script to evaluate the trained model on MNIST test data.
-- `models/`: Directory where the trained network is saved.
-- `mnist_loader.py`: Helper module to load and preprocess MNIST data.
-- `network.py`: Neural network implementation following Nielsen's methodology.
+- `train.py` — trains the neural network on the MNIST dataset.
+- `test_mnist.py` — evaluates the trained model on the test set.
+- `models/` — stores trained network weights.
+- `mnist_loader.py` — loads and preprocesses MNIST data.
+- `network.py` — core neural network and backpropagation implementation.
 
 ## Setup and Usage
 
-1. Create and activate a Python virtual environment.
-2. Install required packages:
-
+```bash
 pip install -r requirements.txt
+python train.py         # Train the model
+python test_mnist.py    # Test the model
+Notes
+While this started as a learning project, the code has matured alongside my deeper mathematical study of backpropagation.
 
-3. Train the model:
+You can find the full paper, which builds backpropagation from scratch using math and connects directly to this code
 
-python train.py
-
-4. Test the trained model:
-
-python test_mnist.py
-
-## Notes
-
-- This is a learning project, so the code is designed to follow the book's explanations closely.
-- Feel free to explore and improve!
+I welcome others who are curious about the math behind learning — feel free to explore and build upon it!
